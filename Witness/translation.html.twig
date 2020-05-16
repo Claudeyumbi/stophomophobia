@@ -1,0 +1,28 @@
+{# src/AppBundle/Resources/views/Witness/translation.html.twig #}
+
+<html>
+  <body>
+    {{ 'Hello'|trans }} {{ name }}!
+    <br>
+    {{ 'Hello'|trans({'%name%': name}) }}
+    <div>
+  <p>{{ 'love'|trans }}</p>
+  
+  <p>{{ 'Symfony is great'|trans }}</p>
+  <br>
+  <button>{{ 'cancel'|trans }}</button>
+  <button>{{ 'validate'|trans }}</button>
+
+  <br>
+  {{ 'thanks'|trans }}!<br>
+
+
+  {% trans %}site.devise{% endtrans %}
+  {# ou #}<br>
+  {{ 'site.devise'|trans }}
+  <br>
+  {{ 'The website'|trans }}
+  <br>
+  </div>
+  </body>
+</html>

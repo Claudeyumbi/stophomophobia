@@ -1,0 +1,170 @@
+{# src/AppBundle/Resources/views/Admin/home.html.twig #}
+
+{% extends "layout_admin.html.twig" %}
+
+    {% block title %}
+       Admin - {{ parent() }}
+    {% endblock %}
+
+{% block body %}
+
+<h2 style="text-align: center;"> Liens pour l'administration du site</h2>
+
+  <div class="content-wrapper py-3">
+
+          <div class="container-fluid">
+
+              <!-- Breadcrumbs -->
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{ path('admin_home') }}">Dashboard</a></li>
+                  <li class="breadcrumb-item active">My Dashboard</li>
+              </ol>
+
+              <!-- Icon Cards -->
+              <div class="row">
+                  <div class="col-xl-4 col-sm-6 mb-3">
+                      <div class="card card-inverse card-primary o-hidden h-100">
+                          <div class="card-block">
+                              <div class="card-block-icon">
+                                  <i class="fa fa-user" aria-hidden="true"></i>
+                              </div>
+                              <div class="mr-5">
+
+                                  {{ countUser }} Users
+
+                              </div>
+                          </div>
+                          <a href="{{ path('admin_user') }}" class="card-footer clearfix small z-1">
+                              <span class="float-left">Voir Détails</span>
+                              <span class="float-right"><i class="fa fa-angle-right"></i></span>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="col-xl-4 col-sm-6 mb-3">
+                      <div class="card card-inverse card-warning o-hidden h-100">
+                          <div class="card-block">
+                              <div class="card-block-icon">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                              </div>
+                              <div class="mr-5">
+
+                                  {{ countContact }} Contacts
+
+                              </div>
+                          </div>
+                          <a href="{{ path('admin_contact') }}" class="card-footer clearfix small z-1">
+                              <span class="float-left">Voir Détails</span>
+                              <span class="float-right"><i class="fa fa-angle-right"></i></span>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="col-xl-4 col-sm-6 mb-3">
+                      <div class="card card-inverse card-danger o-hidden h-100">
+                          <div class="card-block">
+
+                              <div class="card-block-icon">
+                                  <i class="fa fa-comment" aria-hidden="true"></i>
+                              </div>
+                              <div class="mr-5">
+                                  {{ countComment }} Commentaires
+                              </div>
+                          </div>
+                          <a href="{{ path('admin_comment') }}" class="card-footer clearfix small z-1">
+                              <span class="float-left">Voir Détails</span>
+                              <span class="float-right"><i class="fa fa-angle-right"></i></span>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+                  <div class="row">
+                    <div class="col-lg-4">
+                        <!-- Notifications Card -->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <i class="fa fa-bell-o"></i> Recents Users
+                            </div>
+                            <div class="list-group list-group-flush small">
+
+                                {% for user in users %}
+                                <a href="{{ path('admin_user') }}" class="list-group-item list-group-item-action">
+                                    <div class="media">
+                                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                                        <div class="media-body">
+                                              <strong>{{ user.username  }} </strong> recently register.
+                                              <div class="text-muted smaller">{{ user.email }}</div>
+                                              <div class="text-muted smaller">{{ user.lastLogin|date('d-m-Y à H:i:s') }}</div>
+                                        </div>
+                                    </div>
+                                </a>
+                              {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Notifications Card -->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <i class="fa fa-bell-o"></i> Recents Contacts
+                            </div>
+                            <div class="list-group list-group-flush small">
+
+                              {% for contact in listContacts %}
+
+                                <a href="{{ path('admin_contact') }}" class="list-group-item list-group-item-action">
+                                    <div class="media">
+                                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                                        <div class="media-body">
+                                            <strong>{{  contact.pseudo }}</strong> a posté son object de contact <strong>
+                                              {{ contact.object }}</strong>.
+                                            <div class="text-muted smaller">{{ contact.date|date('d-m-Y à H:i:s') }} </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Notifications Card -->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <i class="fa fa-bell-o"></i> Recent comments
+                            </div>
+                            <div class="list-group list-group-flush small">
+
+                            {% for comment in listComments %}
+                                <a href="{{ path('comment_view', {'id': comment.id}) }}" class="list-group-item list-group-item-action">
+                                    <div class="media">
+                                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                                        <div class="media-body">
+
+                                            <strong>{{ comment.author }}</strong> a posté un nouveau commentaire: <strong>{{ comment.content }}</strong>.
+                                            <div class="text-muted smaller">Le {{ comment.date|date('d-m-Y à H:i:s') }}</div>
+
+                                        </div>
+                                    </div>
+                                </a>
+                              {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+
+          </div>
+          <div class="col-md-12">
+
+          <a class="btn btn-primary" href="{{ path('core_home') }}">Retour à l'Accueil</a>
+          <a class="btn btn-primary" href="{{ path('admin_contact') }}">Liste de contacts</a>
+          <a class="btn btn-primary" href="{{ path('admin_witness') }}">Dashboard Témoignages</a>
+          <a class="btn btn-primary" href="{{ path('admin_user') }}">Dashboard utilisateurs</a>
+          <a class="btn btn-primary" href="{{ path('admin_comment') }}">Dashboard Commentaires</a>
+
+        </div>
+          <!-- <a class="btn btn-primary" href="{{ path('witness_add') }}">Ajouter un Témoignage</a> -->
+
+{% endblock %}

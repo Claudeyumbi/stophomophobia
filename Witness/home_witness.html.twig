@@ -1,0 +1,39 @@
+{# src/App/Witness/index.html.twig #}
+
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>{{ 'list of Testimonials'|trans }}</h2>
+
+<p>{{ 'Number of testimonials'|trans }}: {{ count }} </p>
+  <ul>
+    {% for witness in listWitnesss %}
+      <li style="text-decoration: none; font-size:20px;">
+        <a href="{{ path('witness_view', {'slug': witness.slug}) }}">
+          {{ witness.title }}
+        </a>
+        <div style="color: blue">Par {{ witness.username }}</div>
+        Le {{ witness.date|date('d/m/Y à H:i:s') }}
+      </li>
+
+    {% else %}
+      <li> {{ 'No (yet!) Testimonials'|trans }}</li>
+    {% endfor %}
+  </ul>
+
+
+  <ul class="pagination">
+  {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+  {% for p in range(1, nbPages) %}
+    <li{% if p == page %} class="active"{% endif %}>
+      <a href="{{ path('witness', {'page': p}) }}">{{ p }}</a>
+    </li>
+  {% endfor %}
+</ul>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+
+{% extends "layout_admin.html.twig" %}
+
+{% block title %}
+  Witnesss  {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<div class="content-wrapper py-3">
+<div class="container-fluid" style="text-align: center;">
+
+  <!-- Breadcrumbs -->
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ path('admin_home') }}">Dashboard</a></li>
+      <li class="breadcrumb-item active">Témoins</li>
+  </ol>
+  <!-- Tables Card -->
+  <div class="card mb-3">
+      <div class="card-header">
+          <i class="fa fa-table"></i>Donnée Table Témoins
+          <p>Nombre de témoignage: <strong>{{ count }}</strong></p>
+          <ul class="pagination">
+          {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+          {% for p in range(1, nbPages) %}
+            <li{% if p == page %} class="active"{% endif %}>
+              <a href="{{ path('admin_witness', {'page': p}) }}">{{ p }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="card-block">
+          <div class="table-responsive">
+              <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                  <thead>
+                      <tr>
+                        <th>Identifiant</th>
+                        <th>Pseudo</th>
+                        <th>Age</th>
+                        <th>Titre</th>
+                        <th>Témoignage</th>
+                        <th>Date</th>
+                      </tr>
+                  </thead>
+                  <tfoot>
+                      <tr>
+                        <th>Identifiant</th>
+                        <th>Pseudo</th>
+                        <th>Age</th>
+                        <th>Titre</th>
+                        <th>Témoignage</th>
+                        <th>Date</th>
+                      </tr>
+                  </tfoot>
+                  <tbody>
+                      {% for witness in allWitnesss %}
+                      <tr>
+                        <td>{{ witness.id }}</td>
+                        <td>{{ witness.username }}</td>
+                        <td>{{ witness.old }}</td>
+                        <td>{{ witness.title }}</td>
+                        <td>{{ witness.content }}</td>
+                        <td>{{ witness.date|date('d-m-Y') }}</td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+   </div>
+  </div>
+</div>
+
+{% endblock %}

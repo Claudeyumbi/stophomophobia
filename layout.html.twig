@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--[if IEMobile 7]><html class="iem7"  lang="fr" dir="ltr"><![endif]-->
+<!--[if lte IE 6]><html class="lt-ie9 lt-ie8 lt-ie7"  lang="fr" dir="ltr"><![endif]-->
+<!--[if (IE 7)&(!IEMobile)]><html class="lt-ie9 lt-ie8"  lang="fr" dir="ltr"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9"  lang="fr" dir="ltr"><![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)]><!-->
+<html><!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %} stop-homophobie {% endblock %}</title>
+
+    {% stylesheets
+      'bundles/css/main.css'  %}
+      <!-- <link rel="stylesheet" href="{{ asset_url }}" type="text/css" /> -->
+
+      {# On charge le CSS de bootstrap depuis le site directement #}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+      <!-- <link rel="stylesheet" href="/../../bundles/font-awesome/css/font-awesome.min.css"> -->
+      <!-- <link rel="stylesheet" href="{{ asset('bundles/css/main.css') }}" type="text/css" /> -->
+      {% endstylesheets %}
+
+  </head>
+
+  <body>
+     <div class="col-md-12">
+       <header class="sticky fixed-top">
+         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color:#f8f9fa">
+
+         <button class="navbar-toggler navbar-toggler-right" type="button">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarSupportedContent">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+            <!-- <span class="glyphicons glyphicons-menu-hamburger" aria-hidden="true"></span> -->
+            </button>
+            <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> -->
+             <!-- data-target="#myNavbar" -->
+            <!-- LOGO LINK INDEX -->
+            <div class="collapse navbar-collapse m-auto" id="navbarSupportedContent">
+
+            <div class="col-sm-2">
+              <a href="{{ path('core_home') }}">
+                <img src="" alt="Logo" width="80" height="50">
+              </a>
+              <div class="col-sm-1">
+                <a class="navbar-brand logobar" href="{{ path('core_home') }}" class="slogan"> "{{ 'liberty'|trans }}"</a>
+              </div>
+            </div>
+            <div class="offset-0 col-sm-3">
+              <form class="navbar-form navbar-left" action="{{ path('core_searchs') }}" method="get">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="{{ 'search'|trans }}">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+
+                </div>
+              </div>
+            </form>
+            </div>
+
+             <div class="dropdown">
+
+               <div class="offset-2 col-sm-5">
+                 <div class="row">
+
+               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+              {{ 'hello'|trans }}  {{ app.user.username }} ! {{ 'you are well connected'|trans }}.
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="glyphicon glyphicon-user"></span>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ path('fos_user_profile_show') }}"><span class="glyphicon glyphicon-user"></span> {{ 'profile'|trans }} {{ app.user.username }} </a>
+                        <a class="dropdown-item" href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-edit"></span> {{ 'account'|trans }}</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <a class="dropdown-item" href="{{ path('admin_home') }}"><i class="fa fa-wrench" aria-hidden="true"></i> {{ 'admin'|trans }}</a><br>
+                        {% endif %}
+                        <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-off"></span> {{ 'sign out'|trans }}</a>
+                        <!-- <a class="dropdown-item" class="nav-link" href=""><span class="glyphicon glyphicon-shopping-cart"></span></a> -->
+                    <!-- </li> -->
+                    </div>
+                  </div>
+                    {% else %}
+                  <div class="row">
+                    <button><a class="nav-link navbar-btn" href="{{ path('core_home') }}" data-target="#navbarSupportedContent"><span class="glyphicon glyphicon-home"></span> {{'home'|trans }}</a></button>
+                    <button><a class="nav-link navbar-btn" href="{{ path('witness_add') }}" data-target="#navbarSupportedContent"><span class="glyphicon glyphicon-edit"></span> {{'bear witness'|trans}}</a></button>
+                    <button><a class="nav-link navbar-btn" href="{{ path('fos_user_security_login') }}" data-target="#navbarSupportedContent"><span class="glyphicon glyphicon-log-in"></span> {{'connection'|trans}}</a></button>
+                    <button><a class="nav-link navbar-btn" href="{{ path('fos_user_registration_register') }}" data-target="#navbarSupportedContent"><span class="glyphicon glyphicon-user"></span> {{'register'|trans}}</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+          </div>
+        </nav>
+      </header>
+  </div>
+
+    <div class="container">
+      <div id="header" class="jumbotron" style="text-align:center; margin-top:50px;">
+        <h1>{{ 'StopHomophobia'|trans }}</h1>
+        <p style="font-size: 30px;">
+          {{ "fight against homophobia"|trans }}
+        </p>
+        <p>
+        <a class="btn btn-secondary btn-lg" href="{{ path('core_home') }}"><span class="glyphicon glyphicon-home"></span>
+          <!-- {{ 'home'|trans }} -->
+        </a>
+        <a class="btn btn-default btn-lg" href="{{ path('core_contact') }}">
+            {{ 'contact us'|trans }}
+        </a>
+
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+          <a class="btn btn-primary btn-lg" href="{{ path('fos_user_security_logout') }}">
+            {{ 'sign out'|trans }}
+          </a>
+          <a class="btn btn-default btn-lg" href="{{ path('witness_add') }}">
+              {{ 'bear witness'|trans }}
+          </a>
+
+          {% else %}
+          <a class="btn btn-default btn-lg" href="{{ path('fos_user_security_login') }}">
+            {{ 'connection'|trans }}
+          </a>
+
+          {% endif %}
+        </p>
+        {% for key, messages in app.session.flashbag.all() %}
+          {% for message in messages %}
+            <div class="alert alert-{{ key }}">
+              {{ message|trans({}, 'FOSUserBundle') }}
+            </div>
+          {% endfor %}
+        {% endfor %}
+
+      <div class="col-md-offset-10">
+        <div class="row">
+
+           <div class="">
+              <a class="btn btn-default btn-sm" href="http://facebook.com" data-toggle="tooltip"
+                title="Partager sur Facebook" i data-icon="g"></i>
+              <i class="fa fa-facebook" aria-hidden="true"></i></a>
+
+            </div>
+            <div class="">
+              <a class="btn btn-default btn-sm" href="http://google.com" data-toggle="tooltip"
+                title="Partager sur Google" i data-icon="h"></i>
+                <i class="fa fa-google-plus" aria-hidden="true"></i></a>
+            </div>
+            <div class="">
+              <a class="btn btn-default btn-sm" href="http://linkedin.com" data-toggle="tooltip"
+                title="Partager sur LinkedIn" i data-icon="i"></i>
+                <i class="fa fa-linkedin" aria-hidden="true"></i></a></a>
+            </div>
+            <div class="">
+              <a class="btn btn-default btn-sm" href="http://twitter.com" data-toggle="tooltip"
+                title="Partager sur Twitter" i data-icon="j"></i>
+                <i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </div>
+         </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="menu" class="col-md-3" style="background-color:#7e555b; color:rgba(255,255,255,0.95); align-content:center;text-align: center;">
+          <h2>{{ 'menus'|trans }}</h2>
+          <br>
+          <br>
+          <br>
+          <ul class="nav nav-pills nav-stacked" style="align-content:center;">
+            <li><a class="btn btn-default btn-lg" href="{{ path('core_home') }}"><span class="glyphicon glyphicon-home"></span> {{ 'home'|trans }}</a></li>
+            <li><a class="btn btn-default btn-lg" href="{{ path('witness') }}" >{{'all testimonials'|trans}}</a></li>
+            <li><a class="btn btn-default btn-lg" href="{{ path('core_contact') }}">{{ 'contact us'|trans }}</a></li>
+
+              {% if is_granted('ROLE_AUTEUR') %}
+            <li><a class="btn btn-secondary btn-lg" href="{{ path('witness_add') }}">{{ 'bear witness'|trans }}</a></li>
+              {% endif %}
+          </ul>
+          <br>
+          <br>
+          <br>
+          <br>
+          <h3>Editorial</h3>
+          <p>Nous sommes élèves du Lycée Truffaut Bondouffle à Essonne France et nous vous souhaitons la bienvenue sur notre site.
+          <br>Nous sommes en lutte sans merci pour que chaque personne,
+          <a href="{{ path('witness_edito') }}">{{ 'the following'|trans }}</a>
+          <br>
+          <br>
+          <br>
+          <br>
+          <div class="">
+            <h3> Vidéos</h3>
+            <div class="">
+               <!-- <iframe src="https://www.youtube.com/embed/uXYZ5xuiQlc" frameborder="1" allowfullscreen width="200" height="300"></iframe> -->
+            </div>
+          </div>
+          <br>
+          <br>
+          <h3>Enquêtes Audio</h3>
+            <p>
+              Voici les réponses de certaines personnes interrogées au sujet de l'homosexualité, l'homophobie; les préjugés
+              <a href="{{ path('witness_edito') }}">{{ 'the following'|trans }}</a>
+            </p>
+              <!-- <div class="" class="audio">
+                <audio controls>
+                    <source src="../../bundles/core/audio/enquete_homophobie.m4a" type="audio/mp3">
+                </audio>
+                 <p></p> -->
+              <!-- </div>  -->
+
+        </div>
+
+        <div id="content" class="col-md-9" style="text-align:justify; font-size:14px;font-size:1.4rem;font-family:'Source Sans Pro',Helvetica,Arial,sans-serif;font-weight:300;color:#224a6f;background-color:#f0f0e6;overflow-x:hidden">
+          {% block body %}
+
+          {% endblock %}
+
+        </div>
+
+
+
+
+        <!-- <div id="menu" class="col-md-2">
+          <h3>Mes info</h3>
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href="/home" >Accueil</a></li>
+            <li><a href="/add">Ajouter un produit</a></li>
+          </ul>
+
+          <div class="">
+          {% if basket is not defined %}
+          <h4>Nombre d'article</h4>
+
+          {% else %}
+          Dans mon panier: <p style="color: red;"> {# count #} </p>
+          {% endif %}
+        </div>
+        </div> -->
+      </div>
+
+      <hr>
+
+      <footer>
+
+    </div>
+    <div id="footer">
+      <div class="col-md-12" style="background-color:#e8e6dc; height: 400px;">
+        <div class="row">
+
+        <div class="offset-1 col-sm-2" style="background-color:; margin-top: 100px; color: rgba(255,255,255,0.95);}">
+          <div>
+            <a href="{{ path('core_home') }}">{{ 'home'|trans }}</a>
+          </div>
+          <div>
+            <a href="{{ path('witness_add') }}">{{ 'bear witness'|trans }}</a>
+          </div>
+          <div>
+            <a class="" href="{{ path('core_home') }}">{{ 'edito'|trans }}</a>
+          </div>
+
+          <div>
+            <a class="" href="{{ path('core_contact') }}">{{ 'contact'|trans }}</a>
+          </div>
+          <div>
+            <a class="" href="{{ path('witness') }}">{{ 'witness'|trans }}</a>
+          </div>
+
+        </div>
+        <div class="offset-1 col-sm-2" style="background-color:; margin-top: 100px; color: rgba(255,255,255,0.95);}">
+          <div>
+            <a href="{{ path('core_home') }}">{{ 'dream'|trans }}</a>
+          </div>
+          <div>
+            <a href="{{ path('witness_add') }}">{{ 'bear witness'|trans }}</a>
+          </div>
+          <div>
+            <a class="" href="{{ path('core_home') }}">{{ 'edito'|trans }}</a>
+          </div>
+
+          <div>
+            <a class="" href="{{ path('core_contact') }}">{{ 'contact'|trans }}</a>
+          </div>
+          <div>
+            <a class="" href="{{ path('witness') }}">{{ 'witness'|trans }}</a>
+          </div>
+
+        </div>
+        <div class="offset-1 col-sm-2" style="background-color:; margin-top: 100px; color: rgba(255,255,255,0.95);}">
+          <div>
+            <a href="{{ path('core_home') }}">{{ 'home'|trans }}</a>
+          </div>
+          <div>
+            <a href="{{ path('witness_add') }}">{{ 'bear witness'|trans }}</a>
+          </div>
+          <div>
+            <a class="" href="{{ path('core_home') }}">{{ 'edito'|trans }}</a>
+          </div>
+
+          <div>
+            <a class="" href="{{ path('core_contact') }}">{{ 'contact'|trans }}</a>
+          </div>
+          <div>
+            <a class="" href="{{ path('witness') }}">{{ 'witness'|trans }}</a>
+          </div>
+
+        </div>
+        <div class="offset-1 col-sm-2" style="background-color:; margin-top: 100px; color: rgba(255,255,255,0.95);}">
+          <div>
+            <a href="{{ path('core_home') }}">{{ 'home'|trans }}</a>
+          </div>
+          <div>
+            <a href="{{ path('witness_add') }}">{{ 'bear witness'|trans }}</a>
+          </div>
+          <div>
+            <a class="" href="{{ path('core_home') }}">{{ 'edito'|trans }}</a>
+          </div>
+
+          <div>
+            <a class="" href="{{ path('core_contact') }}">{{ 'contact'|trans }}</a>
+          </div>
+          <div>
+            <a class="" href="{{ path('witness') }}">{{ 'witness'|trans }}</a>
+          </div>
+        </div>
+
+        <div class="col-sm-3" style="background-color:; margin-top: 100px;">
+          <div>
+             <img src="" alt="" width="100" height="100">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    </div>
+
+     <p style="text-align:center;"> {{ 'High School Truffaut Essonne France'|trans }}. © {{ 'now'|date('d/m/Y') }} </p>
+     {{'today we are the'|trans}} {{ 'now'|localizeddate('full', 'none') }} {{'and he is'|trans}} {{ 'now'|localizeddate('none', 'short') }}
+    </footer>
+
+    {% javascripts
+      'bundles/js/main.js' %}
+      {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+      <!-- <script src="/Symfony/web/bundles/js/main.js"></script> -->
+      <!-- <script type="text/javascript" src="{{ asset_url }}"></script> -->
+{% endjavascripts %}
+  </body>
+</html>

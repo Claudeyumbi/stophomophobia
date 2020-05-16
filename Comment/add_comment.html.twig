@@ -1,0 +1,63 @@
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<h2>Commentaires</h2>
+<strong>Alert!!! Votre commentaire sera ajouté sur la page d'accueil seulement après sa modération.<br>
+ Tout commentaire contenant des propos injurieux ou intolérents ne sera pas publié !</strong>
+
+<div class="carousel-inner" role="listbox">
+  <div class="item active">
+      <h2>{{ witness.title }}</h2>
+      {# On vérifie qu'une image soit bien associée à l'annonce #}
+
+      {% if witness.image is not null %}
+      {# asset(witness.image.uploadDir ~ '/' ~ witness.image.id ~ '.' ~ witness.mage.url #}
+      <img class="d-block img-fluid" src="{{ asset(witness.image.webPath) }}"
+      alt="{{ witness.image.alt }}" width="350" height="200px">
+      {% endif %}
+
+      <i>Par {{ witness.username }}, le {{ witness.date|date('d/m/Y') }}</i>
+  </div>
+</div>
+
+<hr>
+
+  {{ include("/Comment/form_comment.html.twig") }}
+
+  <p>
+    <a href="{{ path('witness') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Voir liste des témoignages
+    </a>
+  </p>
+
+<div class="alert alert-info alert-dismissable">
+  <a class="panel-close close" data-dismiss="alert">x</a>
+  <i class="fa fa-coffee"></i>
+
+  <h3> Commentaires Récents </h3>
+  <p>Nombre des commentaires : {{ countComment }}</p>
+
+<ul>
+  {% for comment in listComments|reverse %}
+
+  {% if comment in listComments %}
+    <li>
+      {{ comment.author }},
+      {{ comment.date|date('d/m/Y à H:i:s') }}
+
+      {% if is_granted("ROLE_ADMIN") %}
+      <p>{{ comment.content }}.</p>
+        {% endif %}
+    </li>
+
+    {% endif %}
+  {% else %}
+    <li>Pas (encore !) de commentaires</li>
+  {% endfor %}
+</ul>
+</div>
+
+{% endblock %}

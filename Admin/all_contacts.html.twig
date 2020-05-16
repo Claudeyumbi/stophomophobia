@@ -1,0 +1,87 @@
+
+{% extends "layout_admin.html.twig" %}
+
+{% block title %}
+  Contact - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<div class="content-wrapper py-3">
+<div class="container-fluid" style="text-align: center;">
+
+  <!-- Breadcrumbs -->
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ path('core_home')}}">Accueil</a></li>
+      <li class="breadcrumb-item"><a href="{{ path('admin_home')}}">Dashboard</a></li>
+      <li class="breadcrumb-item active">Contact-Visiteur</li>
+  </ol>
+  <!-- Tables Card -->
+  <div class="card mb-3">
+      <div class="card-header">
+          <i class="fa fa-table"></i> Donnée Table Visiteurs-Contacts <br>
+          Nombre de contact : {{ countContact }}
+          <ul class="pagination">
+          {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+          {% for p in range(1, nbPages) %}
+            <li{% if p == page %} class="active"{% endif %}>
+              <a href="{{ path('admin_contact', {'page': p}) }}">{{ p }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="card-block">
+          <div class="table-responsive">
+              <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                  <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Date</th>
+                        <th>Auteur</th>
+                        <th>Email</th>
+                        <th>Objet</th>
+                        <th>Message</th>
+                        <th>Indicatif du pays</th>
+                        <th>Téléphone</th>
+                      </tr>
+                  </thead>
+                  <tfoot>
+                      <tr>
+                        <th>Id</th>
+                        <th>Date</th>
+                        <th>Auteur</th>
+                        <th>Email</th>
+                        <th>Objet</th>
+                        <th>Message</th>
+                        <th>Indicatif du pays</th>
+                        <th>Téléphone</th>
+                      </tr>
+                  </tfoot>
+                  <tbody>
+
+                      {% for contact in allContacts %}
+                      <tr>
+                        <td>{{ contact.id }}</td>
+                        <td>{{ contact.date|date('d/m/Y - H:i:s')}}</td>
+                        <td><a href="{{ path('core_view_contact', {'id': contact.id}) }}">
+                        {{ contact.pseudo }}</a></td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.object }}</td>
+                        <td>{{ contact.content }}</td>
+                        <td>{{ contact.countryCode }}</td>
+                        <td>{{ contact.numberPhone }}</td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+
+  <a class="btn btn-secondary" href="{{ path('witness')}}">{{'all testimonials'|trans}}</a>
+  <a class="btn btn-secondary" href="{{ path('core_home') }}"><i class="glyphicon glyphicon-home"></i>Retour à l'Accueil</a></h3>
+  <a href="{{ path('fos_user_profile_show') }}" class="btn btn-secondary"><i class="glyphicon glyphicon-user"></i>Retour Profil</a>
+
+{% endblock %}

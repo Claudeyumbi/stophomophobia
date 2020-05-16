@@ -1,0 +1,21 @@
+
+{% extends "base.html.twig" %}
+
+{% block title %}
+  Modifier un commentaire - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Modifier un commentaire personnel</h2>
+
+  {{ include("/Comment/form_comment.html.twig") }}
+
+  <p>
+    <a href="{{ path('witness') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+       liste des témoignages
+    </a>
+  </p>
+
+{% endblock %}

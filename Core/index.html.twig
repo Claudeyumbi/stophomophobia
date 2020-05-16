@@ -1,0 +1,185 @@
+{# On utilise ici le layout général, qui se situe dans ce même CoreBundle maintenant #}
+
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Page d'accueil - {{ parent() }}
+{% endblock %}
+
+  {% block body %}
+
+    <div class="">
+      <div id="introCore" class="col-sm-9">
+
+        <h2 style="text-align:center;"> Le web et l'homosexualité</h2>
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox" style="width: 100%;height: 450px;">
+            <div class="item active">
+            <h4>L'homophobie tue</h4>
+            <a href="{{ path('witness_sondage') }}"><img class="d-block img-fluid" src="https://latimeshighschool.files.wordpress.com/2015/04/high-school-marchers-homophobia.jpg"
+            alt="Eliel" class="img-responsive" height="550px"></a>
+            <div class="carousel-caption">
+            <p></p>
+            </div>
+            </div>
+
+            <div class="item">
+            <h4>La délivrance </h4>
+            <a href="{{ path('witness_savoir') }}"><img class="d-block img-fluid" src="https://www.veroattack.com/wp-content/uploads/2017/04/no-homophobia-no-violence-no-racism-quote.jpg"
+            alt="" class="img-responsive" height="550px"></a>
+            <div class="carousel-caption">
+            <p>L'homosexualité, une affaire à prendre au sérieux !</p>
+            </div>
+            </div>
+
+            <div class="item">
+            <h4>S'accepter et se libérer</h4>
+            <a href="{{ path('witness_savoir') }}"><img class="d-block img-fluid" src="https://t4.ftcdn.net/jpg/01/19/89/65/240_F_119896570_KAmSSl0hdtu9ZsO5s9xDJwSp7JDnxr48.jpg"
+             alt="Stop Homophobia" class="img-responsive" height="550px"></a>
+            <div class="carousel-caption">
+            <p></p>
+            </div>
+            </div>
+
+            <div class="item">
+            <h4>Soutenir les faibles par toutes sortes de moyens</h4>
+            <a href="{{ path('witness_interview') }}"><img class="d-block img-fluid" src="http://ih.constantcontact.com/fs157/1102339729411/img/391.jpg?a=1112473369314"
+            alt="Vivre la sexualité Bio" class="img-responsive"  height="550px"></a>
+            <div class="carousel-caption">
+            <p>Qui est la personne qui a besoin du soutien?</p>
+            </div>
+            </div>
+
+            <div class="item">
+            <h4>Les réseaux sociaux et l'homophobie </h4>
+            <a href="{{ path('witness_edito') }}"><img class="d-block img-fluid" src="http://e1.365dm.com/16/09/16-9/20/harry-kane-football-homophobia-lgbt-tottenham-manchester-city-premier-league_3790864.jpg?20160920204044"
+            alt="Football et l'homosexualité" class="img-responsive" height="550px"></a>
+            <div class="carousel-caption">
+            <p>Certains sportifs sont homosexuels et on besoin d'être reconnus comme tel</p>
+            </div>
+            </div>
+
+            <div class="item">
+            <h4>Nos villes et l'homosexualité</h4>
+            <a href="{{ path('witness_sondage') }}"><img class="d-block img-fluid" src="https://www.bradtguides.com/media/catalog/category/bishkek_kyrgyzstan_1.jpg"
+            alt="Nos villes et l'homosexualité" class="img-responsive" height="550px"></a>
+            <div class="carousel-caption">
+            <p></p>
+            </div>
+            </div>
+          </div>
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <div class="mesWitnesss">
+        <!-- {# if is_granted("IS_AUTHENTICATED_REMEMBERED") #} -->
+
+        {# On affiche tous les messages flash dont le nom est « info » #}
+        {% for message in app.session.flashbag.get('info') %}
+          <div class="alert alert-info">Message flash : {{ message }}</div>
+        {% endfor %}
+
+
+        <h3 style="text-align: center;">Les 5 derniers Témoignages </h3>
+
+        {{ include("/Witness/menu_witness.html.twig") }}
+
+<!--
+        {# render(controller("Comment:list", {'limit':2})) #} -->
+        <a href="#"></a>
+
+        <!-- {# else #} -->
+
+        <!-- {# endif #} -->
+        </div>
+        <!-- <p style="margin:2rem;border:3px solid black;background-color: pink;"> -->
+
+
+        <div class="row">
+
+          <div class="mavideoLeft">
+            <!-- <video width="250" height="250" controls src="/Symfony2/web/bundles/ocplatform/video/.mp4" autoplay poster="image.mp4"></video> -->
+          </div>
+          <div class="mavideoRight">
+            <!-- <video width="250" height="250" controls src="/Symfony2/web/bundles/ocplatform/video/.mov" autoplay poster="image.mov"></video> -->
+          </div>
+        </div>
+      </div>
+
+      <div id="edito" class="col-sm-3">
+        <div class="article">
+          <hr>
+          <h2>{{ 'knowledge or prejudices'|trans }}</h2>
+          <hr>
+          <p>
+            <strong>{{ 'history of homosexuality'|trans }}<br><br>
+            {{ 'Homosexuality through the ages'|trans }}
+            <br>{{ 'In history'|trans }} :</strong><br>
+
+            {{ 'homosexuality.history'|trans }}
+            <!-- Bien qu'ils ne soient représentés qu'à partir de l'Antiquité, il est clair que les gays existent depuis toujours, au même titre que les hétérosexuels. Selon la période historique et le lieu dont il est question, -->
+            <!-- l'homosexualité était soit quelque chose de normal, soit elle était diabolisée par des instances comme la Religion ou la Société (qui étaient dans certains cas liées), jugée comme étant une diffamation, une perversion, un péché, ou même un crime. -->
+            <!-- La Grèce Antique, qui est parmi la première période historique où l'homosexualité et ses pratiques y sont clairement divulguées, ne semblait pas les condamner dans la mesure où il semblait tous être bisexuels. Cependant, il s'avère que l'homosexualité entre hommes n'était possible dans la Grèce Antique qu'entre un homme mature et un jeune garçon, et seulement d'un point de vue sexuel. L'union homosexuelle n'était donc vue à cette époque que comme de la perversion -->
+          </p>
+          <a href="{{ path('witness_savoir') }}">{{ 'the following'|trans }}</a>
+        </div>
+        <div class="dossierVie">
+          <hr>
+          <h3>{{ 'survey'|trans }}</h3>
+          <hr>
+            <strong>La population homosexuelle<br>
+            <p> Quelques statistiques </strong></p>
+          <p>  Les estimations varient de 6 à 7 % de la population française ou de 3 à 7 % selon Tony Anatrell, c’est à dire entre 1,8 millions et 4,2 millions de personnes.
+            Dans les magazines gays l’estimation peut aller jusqu’à 10 % de la population.
+          </p>
+          <a href="{{ path('witness_sondage') }}">{{ 'the following'|trans }}</a>
+        </div>
+        <div class="dossierVie">
+          <hr>
+          <h3>{{ 'interview'|trans }}</h3>
+          <hr>
+          <p>
+            <strong>Presentation du film "broke back montain" <br>  </p>
+            <p> Le Secret De BrokeBack Mountain</p>
+            </strong> <br>
+            <p>
+            	En été 1963, au large du Wyoming, deux jeunes cow-boys Ennis Del Mar et Jack Twist sont engagés par un ranch en tant que berger pour l’un et l’autre en tant que responsable du camp des deux hommes. D’abord dans une relation froide et discrète, les jeunes hommes vont petit à petit développer des relations amicales jusqu’à finalement arriver à une relation sexuelle qui marquera le début de leur amour. Malheureusement, lorsqu’ils arrivent au terme de leur travail d’été, les cow-boys prennent malgré eux des chemins contraires et vont commencer à faire une vie à part,
+              </p>
+          <a href="{{ path('witness_interview') }}">{{ 'the following'|trans }}</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+<div class="col-md-9" style="text-align: center">
+
+    <h2>FORUM</h2>
+  <h3>Derniers messages sur le forum</h3>
+  <p>
+
+    {# Ici, on devrait utiliser un contrôleur d'un éventuel ForumBundle pour afficher les derniers posts sur le forum,
+       Projet #}
+  Projet d'un Forum ici !
+  </p>
+
+</div>
+
+{% endblock %}

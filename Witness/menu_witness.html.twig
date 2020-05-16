@@ -1,0 +1,19 @@
+{# src/AppBundle/Resources/views/comment/menu.html.twig #}
+
+{# Ce template n'hérite de personne,
+   tout comme le template inclus avec {{ include() }}. #}
+
+<div class="col-sm-12" style="text-align:center;font-size:14px;">
+
+  {% for witness in listWitnesss %}
+
+      {% if is_granted('ROLE_USER') %}
+      <a href="{{ path('witness_view', {'slug': witness.slug }) }}">
+      {%  endif %}
+       <strong>{{ witness.title }}</strong></a>
+       <p>{{ 'published on'|trans }}{{ witness.date|date('d/m/Y à H:i:s') }}</p>
+      <p><a class="btn btn-secondary btn-sm" href="{{ path('witness_view', {'slug': witness.slug}) }}"> {{ 'See, comment and like'|trans }}</a></p>
+
+  {% endfor %}
+  <a href="{{ path('witness') }}" class="btn-lg btn-success">{{'all testimonials'|trans}}</a>
+</div>

@@ -1,0 +1,21 @@
+
+{% extends "base.html.twig" %}
+
+{% block title %}
+  {{ 'Edit a testimony'|trans }} - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>{{ 'Edit a testimony'|trans }}</h2>
+
+  {{ include("/Witness/form_witness.html.twig") }}
+
+  <p>
+    <a href="{{ path('witness') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      {{'all testimonials'|trans}}
+    </a>
+  </p>
+
+{% endblock %}

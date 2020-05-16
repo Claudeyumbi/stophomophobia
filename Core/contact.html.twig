@@ -1,0 +1,95 @@
+
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Contact - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>{{ 'contact us'|trans }}</h2>
+
+  {# On affiche tous les messages flash dont le nom est « info » #}
+  {% for message in app.session.flashbag.get('info') %}
+    <div class="alert alert-info">Message flash : {{ message }}</div>
+  {% endfor %}
+  <h5>
+      {{ 'message.contact'|trans }}
+  </h5>
+
+  <div id="menu">
+
+  {% include("Core/form_contact.html.twig") %}
+
+</div>
+  <br>
+
+  <div id="page-content-wrapper">
+
+    <div id="menu-toggle">
+      <span class="btn-nav-mobile"><i data-icon="p"></i></span>
+    </div>
+
+
+<div class="page-content inset">
+
+
+  <div class="row" id="contact">
+
+    <div class="col-md-4 col-md-offset-2">
+        <form method="post" action="{{ path('core_contact')}}">
+            <!-- <input type="hidden" id="form__token" name="form[_token]" class="form-control" value="" /> -->
+            <!-- <fieldset>
+                <div class="form-group"><label class="control-label required" for="form_email">Votre adresse e-mail</label><input type="email" id="form_email" name="form[email]" required="required" class="form-control" /></div>
+                <div class="form-group"><label class="control-label required" for="form_subject">Objet de votre message</label><input type="text" id="form_subject" name="form[subject]" required="required" class="form-control" /></div>
+                <div class="form-group"><label class="control-label required" for="form_message">Tapez ici votre mesage</label><textarea id="form_message" name="form[message]" required="required" rows="10" class="form-control"></textarea></div>
+            </fieldset> -->
+            <!-- <button type="submit" class="btn btn-primary col-md-12">
+                Envoyer
+            </button> -->
+        </form>
+    </div>
+
+    <div class="col-md-4 left">
+        <p>
+            Vous préférez le contact par téléphone&nbsp;? <br class="hidden-xs hidden-sm">
+            Nous sommes joignable au +33 07 69 17 73 85.
+
+        </p>
+
+
+        <p>
+            Nous sommes sur d’autres plateformes:
+            <br>
+            <a href="https://www.facebook.com/" data-toggle="tooltip"
+            title="Retrouvez-nous sur facebook"><i data-icon="g"></i><i class="fa fa-facebook" aria-hidden="true"></i>Facebook</a>
+            <a href="http://www.twitter.com/" data-toggle="tooltip"
+            title="Retrouvez-nous sur Twitter"><i data-icon="h"></i><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a>
+            <a href="https://plus.google.com" data-toggle="tooltip"
+            title="Retrouvez-nous sur Google+"><i data-icon="i"></i><i class="fa fa-google-plus" aria-hidden="true"></i>Google+</a>
+            <a href="http://www.linkedin.com" data-toggle="tooltip"
+            title="Retrouvez-nous sur Linkedin"><i data-icon="j"></i><i class="fa fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
+        </p>
+    </div>
+ </div>
+</div>
+
+  <iframe src="https://www.youtube.com/embed/cUYSGojUuAU" frameborder="0" allowfullscreen></iframe>
+
+  <!-- <div id="block-block-newsletter" class="clear-block block block-block">
+  <div class="wrap_title side_right">      <h2 class="block__title block-title">Newsletter</h2></div>
+  <p><iframe frameborder="0" height="138" marginheight="0" marginwidth="0" scrolling="no" src="http://localhost/Symfony/web/app_dev.php/fr/" width="252"> -->
+    <!-- http://widget.mailjet.com/d844b9e3835581be39cb11ecafd7d6487c4530d7.html -->
+  </iframe>
+  </p>
+</div>
+
+  <!-- <div id="map" class="googleMap"></div> -->
+
+<!-- <input type="text" id="address" style="width: 400px; color: blue;"></input> -->
+<!-- <div id="map"></div> -->
+
+<!-- <div id="map"></div> -->
+
+
+{% endblock %}

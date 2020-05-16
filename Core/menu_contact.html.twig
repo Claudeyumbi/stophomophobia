@@ -1,0 +1,11 @@
+{# src/OC/CoreBundle/Resources/views/Core/menu.html.twig #}
+
+<ul class="nav nav-pills nav-stacked">
+  {% for contact in listContacts %}
+    <li>
+      <a href="{{ path('core_view_contact', {'contact_id': contact.id}) }}">
+        {{ contact.pseudo }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

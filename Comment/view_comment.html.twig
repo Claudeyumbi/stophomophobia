@@ -1,0 +1,43 @@
+
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une fiche témoignage - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<div>
+    {# On affiche tous les messages flash dont le nom est « info » #}
+    {% for message in app.session.flashbag.get('info') %}
+      <p>Message flash : {{ message }}</p>
+    {% endfor %}
+  </div>
+
+  <div class="col-sm-12" style="color:blue; font-size: 15px;">
+  <h3>{{ comment.author }}</h3>
+    <p>
+      Le : {{ comment.date|date('d/m/Y à H:i:s') }}
+    </p>
+ </div>
+
+
+  <div class="well" style="color:blue; font-size: 15px;">
+    {{ comment.content }}
+ </div>
+
+  <p>
+    <a href="{{ path('core_home') }}" class="btn btn-primary">
+      <i class="glyphicon glyphicon-chevron-left"></i>Confirmer et Retour Accueil</a>
+    <!-- <a href="{# path('witness_view', {'slug': witness.id}) #}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>Retour au témoignage</a> -->
+
+    <a href="{{ path('comment_edit', {'id': comment.id}) }}" class="btn btn-info">
+      <i class="glyphicon glyphicon-edit"></i>Modifier le commentaire</a>
+
+    <a href="{{ path('comment_delete', {'id': comment.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>Supprimer le commentaire</a>
+
+  </p>
+
+{% endblock %}

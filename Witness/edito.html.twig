@@ -1,0 +1,54 @@
+{# src/App/Witness/edito.html.twig #}
+
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Edito - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+<h2>Editorial</h2>
+<p>Nous sommes élèves du Lycée Truffaut Bondouffle à Essonne France et je vous souhaite la bienvenue sur notre site.
+<br>Nous sommes en lutte sans merci pour que chaque personne, citoyen dans son pays soit libre de son orientation sexuelle.
+(...)
+
+ </p>
+     <div class="video">
+       <!-- <video width="200" height="200" controls src="../../bundles/core/video/voiture.mov" poster="posterimage.jpg" ></video> -->
+       <!-- <p>Eden dans sa voiture électrique</p> -->
+     <!-- </div> -->
+       <!-- <div class="col-md-3" class="video">
+         <p>La vie</p>
+         <video width="200" height="200" controls src="/../../bundles/core/video/film.mp4" poster="posterimage.jpg" ></video>
+       </div> -->
+       <!-- <div class="col-md-3" class="video"> -->
+       <!-- <video width="200" height="200" controls src="../../bundles/core/video/danse.mp4" autoplay poster="posterimage.jpg" ></video> -->
+       <!-- <p>Expérience enseignante</p> -->
+       <!-- </div> -->
+       <!-- <div class="col-md-3" class="video"> -->
+         <!-- <video width="200" height="200" controls src="../../bundles/core/video/rosy7.mov" poster="posterimage.jpg" ></video> -->
+         <!-- <p>Notre destin</p> -->
+       <!-- </div> -->
+       <!-- <div class="col-md-3" class="video"> -->
+         <!-- <video width="200" height="200" controls src="../../bundles/core/video/deasis.MOV" poster="posterimage.jpg" ></video> -->
+         <!-- <p>Notre destin</p> -->
+       <!-- </div> -->
+       <h3>Enquêtes Audio sur l'homosexualité</h3>
+       <p>Voici les réponses de certaines personnes interrogées au sujet de l'homosexualité et l'homophobie,
+         enquêtes réalisées par votre servante,
+       </p>
+       <div class="audio">
+         <audio controls>
+             <source src="../../../public/audio/enquete_homophobie.m4a" type="audio/mp3">
+         </audio>
+         <br>
+         <audio controls>
+             <source src="../../../public/audio/2018-03-02-AUDIO-00000025.m4a" type="audio/mp3">
+         </audio>
+         <!-- <p>Eden dans sa voiture électrique</p> -->
+       </div>
+ </div>
+ </div>
+{% endblock %}

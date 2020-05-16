@@ -1,0 +1,28 @@
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<!-- <div class="col-sm-12" style="background-color: grey; color: white; text-align: center;"> -->
+<h2>Je témoigne pour lutter contre l'homophobie</h2>
+<p>Vous êtes témoin d'une situation d'homophobie, veuillez partager votre expérience</p>
+<div>
+      {# On affiche tous les messages flash dont le nom est « info » #}
+      {% for message in app.session.flashbag.get('info') %}
+        <p>Message flash : {{ message }}</p>
+      {% endfor %}
+    </div>
+  {{ include("/Witness/form_witness.html.twig") }}
+
+<p></p>
+
+<div class="">
+
+<a href="{{ path('witness') }}" class="btn btn-info">
+  <i class="glyphicon glyphicon-chevron-left"></i>
+  {{ 'all testimonials'|trans}}
+</a>
+</div>
+<!-- </div> -->
+
+{% endblock %}

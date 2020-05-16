@@ -1,0 +1,25 @@
+
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Modifier une annonce - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Modifier un contact</h2>
+
+  {{ include("Core/form_contact.html.twig") }}
+
+  <p>
+    <a href="{{ path('core_all_contacts') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à liste de contacts
+    </a>
+    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-secondary">
+      <i class="glyphicon glyphicon-user"></i>
+      Retour Profil
+    </a>
+  </p>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{# src/App/Witness/delete.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block title %}
+  {{ 'delete a testimony'|trans }} - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>{{ 'delete a testimony'|trans }}</h2>
+
+  <p>
+    {{ 'Are you sure you want to delete that testimony'|trans }} :"{{ witness.title }}" ?
+  </p>
+
+  {# On met l'id de l'annonce dans la route de l'action du formulaire #}
+  <form action="{{ path('witness_delete', {'slug': witness.slug}) }}" method="post">
+    <a href="{{ path('witness_view', {'slug': witness.slug}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      {{ 'testimony'|trans }}
+    </a>
+    {# Ici j'ai écrit le bouton de soumission à la main #}
+    <input type="submit" value="Supprimer" class="btn btn-danger" />
+    {# Ceci va générer le champ CSRF #}
+    {{ form_rest(form) }}
+  </form>
+
+{% endblock %}

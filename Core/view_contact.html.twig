@@ -1,0 +1,55 @@
+{# src/OC/PlatformBundle/Resources/view/Core/viewContact.html.twig #}
+
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Lecture d'un contact - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid">
+    <div id="intro" class="col-md-8">
+      <h2> Ce visiteur nous a contactés <br>le {{ contact.date|date('d/m/Y - H:i:s') }}</h2>
+      <h3> Pseudo: {{ contact.pseudo }}</h3>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+              <strong> Message du visiteur : {{ contact.content }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="well" style="color:blue">
+    <h3>Objet du message: {{ contact.object }}</h3>
+  </div>
+
+  <div class="base">
+
+    <a href="/home" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Liste des témoignages
+    </a>
+    <!-- <a href="{{ path('fos_user_registration_register') }}" class="btn btn-default">S'inscrire</a> -->
+    <a href="{{ path('admin_contact') }}" class="btn btn-primary">Liste de contacts</a>
+
+    {% if is_granted("ROLE_ADMIN") %}
+
+      <a href="{{ path('core_edit_contact', {'id': contact.id}) }}" class="btn btn-info">
+        <i class="glyphicon glyphicon-edit"></i>
+        Modifier le contact
+      </a>
+      <a href="{{ path('core_delete_contact', {'id': contact.id}) }}" class="btn btn-danger">
+        <i class="glyphicon glyphicon-trash"></i>
+        Supprimer le contact
+      </a>
+      <a href="{{ path('fos_user_profile_show') }}" class="btn btn-secondary">
+        <i class="glyphicon glyphicon-user"></i>
+        Retour Profil
+      </a>
+
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+<!--
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet" /> -->
+{% endblock %}
+
+{% block body %}
+
+<div class="content-wrapper py-3">
+<div class="container-fluid" style="text-align: center;">
+
+  <!-- Breadcrumbs -->
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+      <li class="breadcrumb-item active">Les Commentaires</li>
+  </ol>
+  <!-- Tables Card -->
+  <div class="card mb-3">
+      <div class="card-header">
+          <i class="fa fa-table"></i> Donnée Table Commentaires
+      </div>
+      <div class="card-block">
+          <div class="table-responsive">
+              <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                  <thead>
+                      <tr>
+                        <th>Identifiant</th>
+                        <th>Prénom</th>
+                        <th>Commentaire</th>
+                        <th>Date</th>
+                      </tr>
+                  </thead>
+                  <tfoot>
+                      <tr>
+                        <th>Identifiant</th>
+                        <th>Prénom</th>
+                        <th>Commentaire</th>
+                        <th>Date</th>
+                      </tr>
+                  </tfoot>
+                  <tbody>
+                      {% for witness in listWitnesss %}
+                      <tr>
+                        <td>{{ witness.id }}</td>
+                        <td>{{ witness.author }}</td>
+                        <td>{{ witness.content }}</td>
+                        <td>{{ witness.date|date('d/m/Y à H:i:s') }}</td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+   </div>
+  </div>
+</div>
+
+{% endblock %}

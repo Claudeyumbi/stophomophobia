@@ -1,0 +1,17 @@
+{# src/AppBundle/Resources/views/Comment/list.html.twig #}
+
+<div class="mesCommentaires">
+
+<ol class="nav nav-pills nav-stacked">
+
+  {% for comment in listComments %}
+  
+    <li>
+      <strong> {{ comment.author }}: </strong><br>
+           "<i>{{ comment.content }} </i>" <br>
+
+    Le {{ comment.date|date('d/m/Y - H:i:s') }}
+    </li>
+  {% endfor %}
+</ol>
+</div>
